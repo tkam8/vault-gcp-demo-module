@@ -75,11 +75,13 @@ variable "consul_private_ip" {
 variable "nginx_instancegroup_self_link" {
   description = "The self link of the nginx instance group."
   type        = string
+  default     = "nginx_instancegroup_self_link"
 }
 
 variable "gke_cluster_name" {
   description = "Name of GKE cluster"
   type        = string
+  default     = "gkeclustername"
 }
 
 variable "gke_endpoint" {
@@ -96,9 +98,11 @@ variable "app_tag_value" {
 variable "cluster_username" {
   description = "username of GKE cluster"
   type        = string
+  default     = "cluster_username"
 }
 
 variable "cluster_password" {
   description = "password of GKE cluster"
   type        = string
+  default     = "cluster_password"
 }
