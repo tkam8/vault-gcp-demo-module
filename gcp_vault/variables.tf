@@ -308,7 +308,14 @@ variable "tls_dns_names" {
 variable "tls_ips" {
   description = "List of IP addresses added to the Vault server self-signed certificate"
   type        = list(string)
-  default     = ["127.0.0.1"]
+  default     = [
+    "127.0.0.1",
+    "10.127.0.1",
+    "10.127.0.2",
+    "10.127.0.3",
+    "10.127.0.4",
+    "10.127.0.5",
+  ]
 }
 
 variable "tls_save_ca_to_disk" {
