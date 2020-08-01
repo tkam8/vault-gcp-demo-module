@@ -72,6 +72,7 @@ resource "tls_self_signed_cert" "root" {
     street_address      = var.tls_ca_subject.street_address
   }
 
+  ip_addresses          = var.ip_addresses
   validity_period_hours = 26280
   early_renewal_hours   = 8760
   is_ca_certificate     = true

@@ -125,6 +125,19 @@ variable "kms_protection_level" {
 //   description = "Options are INTERNAL or EXTERNAL. If `EXTERNAL`, the forwarding rule will be of type EXTERNAL and a public IP will be created. If `INTERNAL` the type will be INTERNAL and a random RFC 1918 private IP will be assigned"
 // }
 
+variable "ip_addresses" {
+  type    = list(string)
+  default = [
+    "10.127.0.1",
+    "10.127.0.2",
+    "10.127.0.3",
+    "10.127.0.4",
+    "10.127.0.5",
+  ]
+
+  description = "List of IP addresses for which certificate is being requested."
+}
+
 variable "vault_args" {
   type    = string
   default = ""

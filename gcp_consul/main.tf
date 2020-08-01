@@ -44,6 +44,10 @@ resource "google_compute_instance" "consul" {
     }
   }
 
+  service_account {
+    scopes = ["cloud-platform"]
+  }
+
   metadata_startup_script = templatefile("${path.module}/templates/consul_onboard.tpl", {
     CONSUL_VERSION  = var.consul_version
     PROJECT_NAME    = var.project

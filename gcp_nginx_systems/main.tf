@@ -67,6 +67,10 @@ resource "google_compute_instance_template" "nginx_template" {
     enable-oslogin = "FALSE"
   }
 
+  service_account {
+    scopes = ["cloud-platform"]
+  }
+
   network_interface {
     #network = "${var.network}"
     subnetwork = var.subnetwork
