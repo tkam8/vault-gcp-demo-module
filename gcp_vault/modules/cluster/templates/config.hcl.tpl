@@ -26,17 +26,17 @@ storage "gcs" {
   ha_enabled = "true"
 }
 
-# Create local non-TLS listener
+# Create local non-TLS listener for Consul health checks
 listener "tcp" {
   address     = "127.0.0.1:${vault_port}"
   tls_disable = 1
 }
 
-# Create a non-local non-TLS listener
-#listener "tcp" {
-#  address     = "LOCAL_IP:${vault_port}"
-#  tls_disable = 1
-#}
+# Create a non-local non-TLS listener for external access
+listener "tcp" {
+  address     = "LOCAL_IP:${vault_port}"
+  tls_disable = 1
+}
 
 # Create an mTLS listener on the load balancer
 #listener "tcp" {
@@ -52,15 +52,15 @@ listener "tcp" {
 # Create an mTLS listener locally. Client's shouldn't talk to Vault directly,
 # but not all clients are well-behaved. This is also needed so the nodes can
 # communicate with eachother.
-listener "tcp" {
-  address            = "LOCAL_IP:${vault_port}"
-  tls_cert_file      = "/etc/vault.d/tls/vault.crt"
-  tls_key_file       = "/etc/vault.d/tls/vault.key"
-  tls_client_ca_file = "/etc/vault.d/tls/ca.crt"
+#listener "tcp" {
+#  address            = "LOCAL_IP:${vault_port}"
+#  tls_cert_file      = "/etc/vault.d/tls/vault.crt"
+#  tls_key_file       = "/etc/vault.d/tls/vault.key"
+#  tls_client_ca_file = "/etc/vault.d/tls/ca.crt"
 
-  tls_disable_client_certs           = "${vault_tls_disable_client_certs}"
-  tls_require_and_verify_client_cert = "${vault_tls_require_and_verify_client_cert}"
-}
+#  tls_disable_client_certs           = "${vault_tls_disable_client_certs}"
+#  tls_require_and_verify_client_cert = "${vault_tls_require_and_verify_client_cert}"
+#}
 
 # Send data to statsd (Stackdriver monitoring)
 telemetry {
