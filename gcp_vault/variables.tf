@@ -96,7 +96,7 @@ variable "storage_bucket_lifecycle_rules" {
       age                   = number,
       created_before        = string,
       with_state            = string,
-      is_live               = string,
+      #is_live               = string,
       matches_storage_class = string,
       num_newer_versions    = number
     }))

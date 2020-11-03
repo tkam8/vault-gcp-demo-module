@@ -146,7 +146,12 @@ resource "google_compute_firewall" "allow-external" {
 
   allow {
     protocol = "tcp"
-    ports    = [var.vault_port]
+    ports    = [var.vault_port, "${var.consul_port}-${var.consul_port + 1}"]
+  }
+
+  allow {
+    protocol = "udp"
+    ports    = ["${var.consul_port + 1}"]
   }
 
   source_ranges = var.vault_allowed_cidrs
